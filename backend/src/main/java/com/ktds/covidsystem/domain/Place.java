@@ -22,6 +22,9 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
+    @ManyToOne(optional = false)
+    private User user;
 
     @Setter
     @Column(nullable = false)
@@ -67,6 +70,7 @@ public class Place {
 
     protected Place(
             PlaceType placeType,
+            User user,
             String placeName,
             String address,
             String phoneNumber,
@@ -75,6 +79,7 @@ public class Place {
             String memo
     ) {
         this.placeType = placeType;
+        this.user = user;
         this.placeName = placeName;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -85,6 +90,7 @@ public class Place {
 
     public static Place of(
             PlaceType placeType,
+            User user,
             String placeName,
             String address,
             String phoneNumber,
@@ -92,7 +98,7 @@ public class Place {
             Integer capacity,
             String memo
     ) {
-        return new Place(placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
+        return new Place(placeType, user,placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
     }
 
 

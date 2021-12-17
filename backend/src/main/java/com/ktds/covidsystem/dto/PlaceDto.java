@@ -2,6 +2,7 @@ package com.ktds.covidsystem.dto;
 
 import com.ktds.covidsystem.constant.PlaceType;
 import com.ktds.covidsystem.domain.Place;
+import com.ktds.covidsystem.domain.User;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ public record PlaceDto(
 ) {
 
     public static PlaceDto idOnly(Long id) {
-        return PlaceDto.of(id, null, null, null, null, null,null, null, null, null);
+        return PlaceDto.of(id,  null,null, null, null, null,null, null, null, null);
     }
 
     public static PlaceDto of(
@@ -52,8 +53,8 @@ public record PlaceDto(
         );
     }
 
-    public Place toEntity() {
-        return Place.of(placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
+    public Place toEntity(User user) {
+        return Place.of(placeType, user, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
     }
 
     public Place updateEntity(Place place) {
