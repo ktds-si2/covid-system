@@ -23,7 +23,8 @@ public class Place {
     private Long id;
 
     @Setter
-    @ManyToOne(optional = false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Setter
@@ -55,12 +56,13 @@ public class Place {
     @Setter
     private String memo;
 
-
-    @Column(nullable = false, insertable = false, updatable = false)
+    @Column(nullable = false, insertable = false, updatable = false,
+            columnDefinition = "datetime default CURRENT_TIMESTAMP")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @Column(nullable = false, insertable = false, updatable = false)
+    @Column(nullable = false, insertable = false, updatable = false,
+            columnDefinition = "datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
@@ -98,7 +100,7 @@ public class Place {
             Integer capacity,
             String memo
     ) {
-        return new Place(placeType, user,placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
+        return new Place(placeType, user, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
     }
 
 
