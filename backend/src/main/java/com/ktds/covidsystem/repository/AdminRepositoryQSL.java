@@ -11,11 +11,8 @@ import java.time.LocalDateTime;
 
 // Author : KJH
 public interface AdminRepositoryQSL {
-    Page<PlaceDto> findPlace(
-            Long id,
-            String placeName,
-            LocalDateTime createdAt,
-            LocalDateTime modifiedAt,
+    Page<PlaceDto> findPlaceByPlaceType(
+            PlaceType placeType,
             Pageable pageable
     );
 }
