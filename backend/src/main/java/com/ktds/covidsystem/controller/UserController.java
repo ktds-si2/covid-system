@@ -25,13 +25,13 @@ public class UserController {
     public ResponseEntity logout() {
         log.info("GET /logout");
 
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body("로그아웃");
     }
 
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody SignupRequest signupRequest) {
         log.info("POST /signup : {}", signupRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body("회원가입");
     }
 }
