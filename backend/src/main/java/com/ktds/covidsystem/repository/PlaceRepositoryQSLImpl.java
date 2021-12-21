@@ -7,6 +7,7 @@ import com.ktds.covidsystem.dto.PlaceDto;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.List;
 
 // Author : KJH
+
 @Slf4j
 public class PlaceRepositoryQSLImpl extends QuerydslRepositorySupport implements PlaceRepositoryQSL {
 
@@ -25,6 +27,7 @@ public class PlaceRepositoryQSLImpl extends QuerydslRepositorySupport implements
     public Page<PlaceDto> findPlaceByPlaceType(PlaceType placetype, Pageable pageable) {
         QPlace place = QPlace.place;
         JPQLQuery<PlaceDto> query = select();
+
 
         if (placetype != null) {
             query.where(place.placeType.eq(placetype));

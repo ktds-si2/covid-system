@@ -26,4 +26,5 @@ public interface PlaceRepositoryQSL {
             Integer currentNumberOfPeople,
             Integer capacity,
             Pageable pageable);
+
 }

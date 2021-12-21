@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import java.util.List;
 @Transactional
 @Service
 public class PlaceService {
+
     private final PlaceRepository placeRepository;
 
     public List<PlaceDto> findAllPlace() {
@@ -47,14 +49,18 @@ public class PlaceService {
 
     public PlaceDto findDetailPlacePage(Long id) throws Exception {
         log.info("findDetailPlacePage() start");
+
         return placeRepository.findById(id).map(PlaceDto::from).orElseThrow(
+
                 () -> new Exception("exception in findDetailPlacePage()"));
     }
 
     public boolean modifyDetailPlacePage(Long id, PlaceDto placeDto) throws Exception {
+
         log.info("modifyDetailPlacePage() start");
 
         Place place = placeRepository.findById(id).orElseThrow(
+
                 () -> new Exception("exception in modifyDetailPlacePage()"));
 
         place.setPlaceType(placeDto.placeType());
@@ -69,6 +75,7 @@ public class PlaceService {
     }
 
     public boolean deleteDetailPlacePage(Long id) throws Exception {
+
         log.info("deleteDetailPlacePage() start");
         placeRepository.deleteById(id);
         return true;

@@ -17,6 +17,7 @@ public class AdminController {
 
     private final PlaceService placeService;
 
+
     /**
      * 모든 장소 조회
      *
