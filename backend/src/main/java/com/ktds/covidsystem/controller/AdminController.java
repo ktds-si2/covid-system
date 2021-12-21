@@ -1,7 +1,7 @@
 package com.ktds.covidsystem.controller;
 
 import com.ktds.covidsystem.dto.PlaceDto;
-import com.ktds.covidsystem.service.AdminService;
+import com.ktds.covidsystem.service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,13 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final AdminService adminService;
+    private final PlaceService placeService;
 
     @GetMapping("/place")
     public List<PlaceDto> adminPlaceList() {
 //        Page<PlaceDto> places = adminService.findPlaceByPlaceType(PlaceType.SPORTS, PageRequest.of(0, 5));
 //        adminService.findPlaceByPlaceType(PlaceType.SPORTS, PageRequest.of(0, 5)).getContent();
-        return adminService.findAllPlace();
+        return placeService.findAllPlace();
     }
 
     @GetMapping("/place/new")
@@ -31,22 +31,22 @@ public class AdminController {
 
     @PostMapping("/place/new")
     public void adminNewPlaceRegister(@RequestBody PlaceDto placeDto) {
-        adminService.registerNewPlace(placeDto);
+        placeService.registerNewPlace(placeDto);
     }
 
     @GetMapping("/place/{placeId}")
     public PlaceDto adminPlacePageDetail(@PathVariable String placeId) throws Exception {
-        return adminService.findDetailPlacePage(Long.valueOf(placeId));
+        return placeService.findDetailPlacePage(Long.valueOf(placeId));
 
     }
 
     @PutMapping("/place/{placeId}")
     public boolean adminPlacePageDetailModify(@PathVariable String placeId, @RequestBody PlaceDto placeDto) throws Exception {
-        return adminService.modifyDetailPlacePage(Long.valueOf(placeId), placeDto);
+        return placeService.modifyDetailPlacePage(Long.valueOf(placeId), placeDto);
     }
 
     @DeleteMapping("/place/{placeId}")
     public boolean adminPlacePageDetailDelete(@PathVariable String placeId) throws Exception {
-        return adminService.deleteDetailPlacePage(Long.valueOf(placeId));
+        return placeService.deleteDetailPlacePage(Long.valueOf(placeId));
     }
 }
