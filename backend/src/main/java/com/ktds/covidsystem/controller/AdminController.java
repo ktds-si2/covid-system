@@ -26,7 +26,7 @@ public class AdminController {
 
     @GetMapping("/place/new")
     public ResponseEntity adminNewPlaceRegisterPage() {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/place/new")
@@ -35,20 +35,18 @@ public class AdminController {
     }
 
     @GetMapping("/place/{placeId}")
-    public PlaceDto adminPlacePageDetail(@PathVariable String placeId) {
-//        return adminService.findDetailPlacePage(Long.valueOf(placeId))
-//                .map(PlaceDto::of)
-//                .orElse()
-        return null;
+    public PlaceDto adminPlacePageDetail(@PathVariable String placeId) throws Exception {
+        return adminService.findDetailPlacePage(Long.valueOf(placeId));
+
     }
 
     @PutMapping("/place/{placeId}")
-    public ResponseEntity adminPlacePageDetailModify(@PathVariable String placeId) {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public boolean adminPlacePageDetailModify(@PathVariable String placeId, @RequestBody PlaceDto placeDto) throws Exception {
+        return adminService.modifyDetailPlacePage(Long.valueOf(placeId), placeDto);
     }
 
     @DeleteMapping("/place/{placeId}")
-    public ResponseEntity adminPlacePageDetailDelete(@PathVariable String placeId) {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public boolean adminPlacePageDetailDelete(@PathVariable String placeId) throws Exception {
+        return adminService.deleteDetailPlacePage(Long.valueOf(placeId));
     }
 }
