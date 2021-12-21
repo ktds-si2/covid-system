@@ -1,43 +1,52 @@
 package com.ktds.covidsystem.controller;
 
-import com.ktds.covidsystem.domain.Place;
 import com.ktds.covidsystem.dto.PlaceDto;
+import com.ktds.covidsystem.service.AdminService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 // Author : KJH
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
 
+    private final AdminService adminService;
+
     @GetMapping("/place")
-    public ResponseEntity adminPlaceList() {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public List<PlaceDto> adminPlaceList() {
+//        Page<PlaceDto> places = adminService.findPlaceByPlaceType(PlaceType.SPORTS, PageRequest.of(0, 5));
+//        adminService.findPlaceByPlaceType(PlaceType.SPORTS, PageRequest.of(0, 5)).getContent();
+        return adminService.findAllPlace();
     }
 
     @GetMapping("/place/new")
     public ResponseEntity adminNewPlaceRegisterPage() {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/place/new")
-    public ResponseEntity adminNewPlaceRegister() {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public void adminNewPlaceRegister(@RequestBody PlaceDto placeDto) {
+        adminService.registerNewPlace(placeDto);
     }
 
     @GetMapping("/place/{placeId}")
-    public ResponseEntity adminPlacePageDetail(@PathVariable String placeId) {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public PlaceDto adminPlacePageDetail(@PathVariable String placeId) throws Exception {
+        return adminService.findDetailPlacePage(Long.valueOf(placeId));
+
     }
 
     @PutMapping("/place/{placeId}")
-    public ResponseEntity adminPlacePageDetailModify(@PathVariable String placeId) {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public boolean adminPlacePageDetailModify(@PathVariable String placeId, @RequestBody PlaceDto placeDto) throws Exception {
+        return adminService.modifyDetailPlacePage(Long.valueOf(placeId), placeDto);
     }
 
     @DeleteMapping("/place/{placeId}")
-    public ResponseEntity adminPlacePageDetailDelete(@PathVariable String placeId) {
-        return new ResponseEntity<>(PlaceDto.idOnly(1L), HttpStatus.OK);
+    public boolean adminPlacePageDetailDelete(@PathVariable String placeId) throws Exception {
+        return adminService.deleteDetailPlacePage(Long.valueOf(placeId));
     }
 }

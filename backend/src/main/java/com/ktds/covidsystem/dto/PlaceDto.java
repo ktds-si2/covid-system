@@ -2,11 +2,13 @@ package com.ktds.covidsystem.dto;
 
 import com.ktds.covidsystem.constant.PlaceType;
 import com.ktds.covidsystem.domain.Place;
+import com.ktds.covidsystem.domain.User;
 
 import java.time.LocalDateTime;
 
 public record PlaceDto(
         Long id,
+//        User user,
         PlaceType placeType,
         String placeName,
         String address,
@@ -18,12 +20,21 @@ public record PlaceDto(
         LocalDateTime modifiedAt
 ) {
 
+    public PlaceDto(Long id, PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String memo) {
+        this(id, placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, null, null);
+    }
+
+    public PlaceDto(PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String memo) {
+        this(null,  placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, null, null);
+    }
+
     public static PlaceDto idOnly(Long id) {
-        return PlaceDto.of(id, null, null, null, null, null,null, null, null, null);
+        return PlaceDto.of(id, null,null,null, null, null, null,null, null, null, null);
     }
 
     public static PlaceDto of(
             Long id,
+            User user,
             PlaceType placeType,
             String placeName,
             String address,
@@ -34,10 +45,11 @@ public record PlaceDto(
             LocalDateTime createdAt,
             LocalDateTime modifiedAt
     ) {
+
         return new PlaceDto(id, placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, createdAt, modifiedAt);
     }
 
-    public static PlaceDto of(Place place) {
+    public static PlaceDto from(Place place) {
         return new PlaceDto(
                 place.getId(),
                 place.getPlaceType(),

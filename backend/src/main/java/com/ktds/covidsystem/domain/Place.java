@@ -22,14 +22,18 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @Setter
+//    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
     @Setter
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private PlaceType placeType;
 
     @Setter
-    @Column(nullable = false)
+    @Column
     private String placeName;
 
     @Setter
@@ -37,27 +41,28 @@ public class Place {
     private String address;
 
     @Setter
-    @Column(nullable = false)
+    @Column
     private String phoneNumber;
 
     @Setter
-    @Column(nullable = false)
+    @Column
     private Integer currentNumberOfPeople;
 
     @Setter
-    @Column(nullable = false)
+    @Column
     private Integer capacity;
 
-
     @Setter
+    @Column
     private String memo;
 
-
-    @Column(nullable = false, insertable = false, updatable = false)
+    @Column(nullable = false, insertable = false, updatable = false,
+            columnDefinition = "datetime default CURRENT_TIMESTAMP")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @Column(nullable = false, insertable = false, updatable = false)
+    @Column(nullable = false, insertable = false, updatable = false,
+            columnDefinition = "datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
@@ -65,8 +70,9 @@ public class Place {
     protected Place() {
     }
 
-    protected Place(
+    public Place(
             PlaceType placeType,
+//            User user,
             String placeName,
             String address,
             String phoneNumber,
@@ -75,6 +81,7 @@ public class Place {
             String memo
     ) {
         this.placeType = placeType;
+//        this.user = user;
         this.placeName = placeName;
         this.address = address;
         this.phoneNumber = phoneNumber;
