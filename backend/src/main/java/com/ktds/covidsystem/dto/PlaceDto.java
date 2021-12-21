@@ -2,7 +2,7 @@ package com.ktds.covidsystem.dto;
 
 import com.ktds.covidsystem.constant.PlaceType;
 import com.ktds.covidsystem.domain.Place;
-import com.ktds.covidsystem.domain.User;
+import com.ktds.covidsystem.domain.CustomUserDetails;
 
 import java.time.LocalDateTime;
 
@@ -34,7 +34,7 @@ public record PlaceDto(
 
     public static PlaceDto of(
             Long id,
-            User user,
+            CustomUserDetails user,
             PlaceType placeType,
             String placeName,
             String address,

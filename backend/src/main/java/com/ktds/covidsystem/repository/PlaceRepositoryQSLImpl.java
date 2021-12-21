@@ -13,9 +13,9 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.List;
 
 // Author : KJH
-public class AdminRepositoryQSLImpl extends QuerydslRepositorySupport implements AdminRepositoryQSL {
+public class PlaceRepositoryQSLImpl extends QuerydslRepositorySupport implements PlaceRepositoryQSL {
 
-    public AdminRepositoryQSLImpl() {
+    public PlaceRepositoryQSLImpl() {
         super(Place.class);
     }
 

@@ -3,7 +3,7 @@ package com.ktds.covidsystem.service;
 import com.ktds.covidsystem.constant.PlaceType;
 import com.ktds.covidsystem.domain.Place;
 import com.ktds.covidsystem.dto.PlaceDto;
-import com.ktds.covidsystem.repository.AdminRepository;
+import com.ktds.covidsystem.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -13,15 +13,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 // Author : KJH
 @Slf4j
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class AdminService {
-    private final AdminRepository adminRepository;
+public class PlaceService {
+    private final PlaceRepository adminRepository;
 
     // 전체 장소 조회
     public List<PlaceDto> findAllPlace() {
