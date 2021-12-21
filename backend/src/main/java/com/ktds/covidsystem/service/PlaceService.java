@@ -7,6 +7,7 @@ import com.ktds.covidsystem.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
@@ -22,20 +23,20 @@ import java.util.List;
 public class PlaceService {
     private final PlaceRepository placeRepository;
 
-    // 전체 장소 조회
     public List<PlaceDto> findAllPlace() {
         log.info("findAllPlace() start");
         return placeRepository.findAll().stream().map(PlaceDto::from).toList();
     }
 
-    // PlaceType으로 전체 장소 조회
-    public Page<PlaceDto> findPlaceByPlaceType(PlaceType placeType, Pageable pageable) {
-        log.info("findPlaceByPlaceType() start");
-        return placeRepository.findPlaceByPlaceType(placeType, pageable);
+    public Page<PlaceDto> findPlace(String placeType, String placeName, String address, String phoneNumber,
+                                    Integer currentNumberOfPeople, Integer capacity,  int pageNum, int pageSize) {
+        log.info("findPlace() start");
+        return placeRepository.findPlace(PlaceType.valueOf(placeType), placeName, address, phoneNumber, currentNumberOfPeople, capacity, PageRequest.of(pageNum, pageSize));
     }
-    
-    // 장소등록
+
     public boolean registerNewPlace(PlaceDto placeDto) {
+        log.info("registerNewPlace() start");
+
         if (placeDto == null)
             return false;
 
@@ -51,9 +52,6 @@ public class PlaceService {
     }
 
     public boolean modifyDetailPlacePage(Long id, PlaceDto placeDto) throws Exception {
-        if (id < 0)
-            return false;
-
         log.info("modifyDetailPlacePage() start");
 
         Place place = placeRepository.findById(id).orElseThrow(
@@ -71,15 +69,8 @@ public class PlaceService {
     }
 
     public boolean deleteDetailPlacePage(Long id) throws Exception {
-        if (id < 0)
-            return false;
-
         log.info("deleteDetailPlacePage() start");
-
         placeRepository.deleteById(id);
-
         return true;
     }
-
-
 }
