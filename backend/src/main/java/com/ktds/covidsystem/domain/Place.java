@@ -37,7 +37,7 @@ public class Place {
     private String placeName;
 
     @Setter
-    @Column(nullable = false)
+    @Column
     private String address;
 
     @Setter
