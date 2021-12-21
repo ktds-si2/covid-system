@@ -34,4 +34,10 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body("회원가입");
     }
+
+    @GetMapping("/user")
+    public ResponseEntity user() {
+        return ResponseEntity.status(HttpStatus.OK).body("유저");
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.ktds.covidsystem.controller;
 
 import com.ktds.covidsystem.dto.PlaceDto;
-import com.ktds.covidsystem.service.AdminService;
+import com.ktds.covidsystem.service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final AdminService adminService;
+    private final PlaceService adminService;
 
     @GetMapping("/place")
     public List<PlaceDto> adminPlaceList() {
