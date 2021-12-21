@@ -18,8 +18,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @ToString
-@Table
-@EntityListeners(AuditingEntityListener.class)
+@Table(name = "user")
+//@EntityListeners(AuditingEntityListener.class)
 @Entity
 @NoArgsConstructor
 public class CustomUserDetails implements UserDetails {
@@ -38,15 +38,15 @@ public class CustomUserDetails implements UserDetails {
     private String authority;
 
 
-    @Column(nullable = false, insertable = false, updatable = false,
-            columnDefinition = "datetime default CURRENT_TIMESTAMP")
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false, insertable = false, updatable = false,
-            columnDefinition = "datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
+//    @Column(nullable = false, insertable = false, updatable = false,
+//            columnDefinition = "datetime default CURRENT_TIMESTAMP")
+//    @CreatedDate
+//    private LocalDateTime createdAt;
+//
+//    @Column(nullable = false, insertable = false, updatable = false,
+//            columnDefinition = "datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+//    @LastModifiedDate
+//    private LocalDateTime modifiedAt;
 
     public CustomUserDetails(String username, String password, String authority) {
         this.username = username;

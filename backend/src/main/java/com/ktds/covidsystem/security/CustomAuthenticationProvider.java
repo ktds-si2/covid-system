@@ -1,6 +1,7 @@
 package com.ktds.covidsystem.security;
 
 import com.ktds.covidsystem.domain.CustomUserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -10,11 +11,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
+@Slf4j
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -25,14 +26,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         String username = authentication.getName();
-        String password = (String)authentication.getCredentials();
+        String password = (String) authentication.getCredentials();
 
-        CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
+        log.info("user : {}", username);
+        log.info("password : {}", password);
 
+        CustomUserDetails user = (CustomUserDetails) customUserDetailsService.loadUserByUsername(username);
+        log.info("객체 : {}", user);
         // password 일치하지 않으면!
-        if(!passwordEncoder.matches(password,user.getPassword())){
+//        if(!passwordEncoder.matches(password,user.getPassword())){
+//            throw new BadCredentialsException("BadCredentialsException");
+//        }
+        if (!password.equals(user.getPassword()))
             throw new BadCredentialsException("BadCredentialsException");
-        }
 
         UsernamePasswordAuthenticationToken authenticationToken
                 = new UsernamePasswordAuthenticationToken(
