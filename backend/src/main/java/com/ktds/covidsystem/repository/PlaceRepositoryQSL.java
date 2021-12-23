@@ -8,15 +8,6 @@ import org.springframework.data.domain.Pageable;
 
 // Author : KJH
 public interface PlaceRepositoryQSL {
-    Page<PlaceDto> findPlaceByPlaceType(
-            PlaceType placeType,
-            Pageable pageable
-    );
-
-    Page<PlaceDto> findPlaceByPlaceName(
-            String placeName,
-            Pageable pageable
-    );
 
     Page<PlaceDto> findPlace(
             PlaceType placeType,
