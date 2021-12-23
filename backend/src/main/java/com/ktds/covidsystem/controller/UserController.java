@@ -33,15 +33,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃");
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity signup(@RequestBody SignupRequest signupRequest) {
-        log.info("POST /signup : {}", signupRequest);
-
-        if(userService.signUp(signupRequest))
-            return ResponseEntity.status(HttpStatus.OK).body("회원가입 완료");
-        else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("유저 이미 존재");
-    }
+//    @PostMapping("/signup")
+//    public ResponseEntity signup(@RequestBody SignupRequest signupRequest) {
+//        log.info("POST /signup : {}", signupRequest);
+//
+//        if(userService.signUp(signupRequest))
+//            return ResponseEntity.status(HttpStatus.OK).body("회원가입 완료");
+//        else
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("유저 이미 존재");
+//    }
 
     @GetMapping("/user")
     public ResponseEntity user() {

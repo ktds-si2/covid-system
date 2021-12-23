@@ -13,16 +13,13 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 @Getter
 @ToString
 @Table(name = "user")
 //@EntityListeners(AuditingEntityListener.class)
 @Entity
 @NoArgsConstructor
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,39 +49,5 @@ public class CustomUserDetails implements UserDetails {
         this.username = username;
         this.password = password;
         this.authority = authority;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton((GrantedAuthority) () -> authority);
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    public boolean isAdmin() {
-        return authority.equals("ROLE_ADMIN");
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
     }
 }
