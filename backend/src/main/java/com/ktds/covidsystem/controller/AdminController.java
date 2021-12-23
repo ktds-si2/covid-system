@@ -48,7 +48,7 @@ public class AdminController {
      */
     @PostMapping("/place/new")
     public boolean adminNewPlaceRegister(@RequestBody PlaceDto placeDto) {
-        return placeService.registerNewPlace(placeDto);
+        return placeService.createNewPlace(placeDto);
     }
 
     /**
