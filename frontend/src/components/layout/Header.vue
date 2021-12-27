@@ -1,3 +1,4 @@
+<!-- Author : JHW -->
 <template>
 <div>
   <b-navbar type="dark" variant="info">
