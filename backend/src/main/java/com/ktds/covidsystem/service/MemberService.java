@@ -1,9 +1,11 @@
 package com.ktds.covidsystem.service;
 
 import com.ktds.covidsystem.constant.Authority;
+import com.ktds.covidsystem.constant.ErrorCode;
 import com.ktds.covidsystem.domain.Member;
 import com.ktds.covidsystem.dto.MemberResponseDto;
 import com.ktds.covidsystem.dto.SignupRequest;
+import com.ktds.covidsystem.exception.EmailDuplicateException;
 import com.ktds.covidsystem.repository.MemberRepository;
 import com.ktds.covidsystem.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +29,12 @@ public class MemberService {
     @Transactional
     public Member singUp(SignupRequest signupRequest) {
         if (memberRepository.findByEmail(signupRequest.email()).orElse(null) != null)
-            throw new RuntimeException("이미 가입되어 있는 유저입니다.");
+            throw new EmailDuplicateException(ErrorCode.EMAIL_DUPLICATED_ERROR);
 
         Member member = new Member(
                 signupRequest.email(),
                 encodingPassword(signupRequest.password()),
-                Authority.ROLE_ADMIN,
+                Authority.ROLE_USER,
                 true);
 
         return memberRepository.save(member);
