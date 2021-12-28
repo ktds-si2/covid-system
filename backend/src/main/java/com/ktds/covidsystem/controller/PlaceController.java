@@ -81,7 +81,7 @@ public class PlaceController {
     @PostMapping("/favorite")
     public boolean createFavorite(@RequestBody FavoriteResponseDto favoriteResponseDto) {
         placeService.createFavorite(favoriteResponseDto.favoriteDto(), favoriteResponseDto.place_id());
-        return true;
+        return false;
     }
 
     /**

@@ -12,11 +12,14 @@ values
 ('PARTY', 'ktds 무도회장', '서울시 강남구 가나대로 123 2층', '010-1234-5678', 3, 1, '에블바리')
 ;
 
-insert into `user` (`email`, `nickname`, `password`, `phone_Number`, `is_Admin`)
-values
-('test@naver.com', '노루', 'shfn', '010-9999-0000', false),
-('test1@naver.com', '사슴', 'tktma', '010-1234-5678', false),
-('test2@naver.com', '강아지', 'rkddkwl', '010-1004-1004', false),
-('test3@naver.com', '고양이', 'rhdiddl', '010-1111-1111', false),
-('test4@naver.com', '돼지', 'ehowl', '010-1234-5678', false)
-;
+-- insert into `member` (`email`, `password`, `authority`, `activated`)
+-- values
+-- ('test', '1234', 'USER'),
+-- ('test2','1234', 'ADMIN' )
+-- ;
+
+-- insert into `favorite` (`place_id`, `user_Name`)
+-- values
+-- (1, 'test'),
+-- (1, 'test2')
+-- ;
