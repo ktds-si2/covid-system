@@ -7,6 +7,7 @@
             <button type="button" @click="login()" >Login</button>
         </form>
         <button @click="print()">토큰 출력</button>
+        <p><br>{{tokenValue}}</p>
     </div>
 </template>
 
@@ -19,7 +20,8 @@ export default {
         return {
             tokenDto: 'token',
             email : '',
-            password : ''
+            password : '',
+            tokenValue: ''
         }
     },
     methods: {
@@ -30,8 +32,8 @@ export default {
             })).data.token;
 
             this.email = '';
-            this.password = '';
-            alert(this.tokenDto);
+            this.password = '';          
+            this.$store.state.token = this.tokenDto;     
         },
         print() {
             alert(this.tokenDto);

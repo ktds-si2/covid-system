@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <img alt="Vue logo" src="./assets/logo.png">
-    <Main />
+    <Main/>
   </div>
 </template>
 
@@ -13,8 +13,7 @@ import Main from './components/page/Main.vue'
 export default {
   name: 'App',
   components: {
-    Header,
-    Main
+    Header, Main
   }
 }
 </script>

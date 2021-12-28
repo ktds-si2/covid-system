@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
 
+// Vuex 설정
+import { store } from './store/store.js';
+
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 // Make BootstrapVue available throughout your project
@@ -16,4 +19,7 @@ Vue.config.productionTip = false;
 
 new Vue({
   render: (h) => h(App),
+  
+  // Vuex 설정
+  store
 }).$mount('#app');
