@@ -4,6 +4,7 @@ import com.ktds.covidsystem.dto.LoginRequest;
 import com.ktds.covidsystem.dto.TokenDto;
 import com.ktds.covidsystem.security.JwtFilter;
 import com.ktds.covidsystem.security.TokenProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 // Author : JHW
+@CrossOrigin("*")
 @RestController
+@Slf4j
 public class AuthController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
@@ -27,6 +30,8 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authorize(@RequestBody LoginRequest loginRequest) {
         // 토큰객체 생성
+        log.info("authenticate : {}", loginRequest);
+
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
