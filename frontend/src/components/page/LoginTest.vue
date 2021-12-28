@@ -1,8 +1,12 @@
 <!-- API 테스트용  Author : JHW -->
 <template>
     <div>
-        <button @click="login()">Login</button>
-        <button @click="print()">print</button>
+        <form>
+            ID : <input type="text" v-model="email"/>
+            Password : <input type="password" v-model="password" />
+            <button type="button" @click="login()" >Login</button>
+        </form>
+        <button @click="print()">토큰 출력</button>
     </div>
 </template>
 
@@ -13,15 +17,24 @@ export default {
     name:"LoginTest",
     data() {
         return {
-            tokenDto: 'token'
+            tokenDto: 'token',
+            email : '',
+            password : ''
         }
     },
     methods: {
-        async login() {
-            this.tokenDto = (await authenticate({"email":"user","password":"user"})).data;
+        async login () {
+            this.tokenDto = (await authenticate({
+                "email":this.email,
+                "password":this.password
+            })).data.token;
+
+            this.email = '';
+            this.password = '';
+            alert(this.tokenDto);
         },
         print() {
-            console.log(this.tokenDto);
+            alert(this.tokenDto);
         }
     }
 }
