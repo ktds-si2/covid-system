@@ -1,10 +1,13 @@
 package com.ktds.covidsystem.service;
 
 import com.ktds.covidsystem.constant.PlaceType;
+import com.ktds.covidsystem.domain.Favorite;
+import com.ktds.covidsystem.domain.Member;
 import com.ktds.covidsystem.domain.Place;
 import com.ktds.covidsystem.dto.FavoriteDto;
 import com.ktds.covidsystem.dto.FavoriteResponseDto;
 import com.ktds.covidsystem.dto.PlaceDto;
+import com.ktds.covidsystem.dto.PlaceResponseDto;
 import com.ktds.covidsystem.repository.FavoriteRepository;
 import com.ktds.covidsystem.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -36,10 +40,29 @@ public class PlaceService {
     }
 
     // 조건으로 장소 검색
-    public Page<PlaceDto> findPlace(String placeType, String placeName, String address, String phoneNumber,
-                                    Integer currentNumberOfPeople, Integer capacity,  int pageNum, int pageSize) {
+    public Page<PlaceDto> findPlace(PlaceResponseDto placeResponseDto) {
         log.info("findPlace() start");
-        return placeRepository.findPlace(PlaceType.valueOf(placeType), placeName, address, phoneNumber, currentNumberOfPeople, capacity, PageRequest.of(pageNum, pageSize));
+        PlaceType placeType = null;
+        if (placeResponseDto.placeType() != null) {
+            placeType = PlaceType.valueOf(placeResponseDto.placeType());
+        }
+
+        Integer currentNumberOfPeople = placeResponseDto.currentNumberOfPeople();
+        if (currentNumberOfPeople == null)
+            currentNumberOfPeople = -1;
+
+        Integer capacity = placeResponseDto.capacity();
+        if (capacity == null) {
+            capacity = -1;
+        }
+
+        return placeRepository.findPlace(
+                placeType,
+                placeResponseDto.placeName(),
+                placeResponseDto.address(),
+                placeResponseDto.phoneNumber(),
+                currentNumberOfPeople,
+                capacity, PageRequest.of(placeResponseDto.pageNum(), placeResponseDto.pageSize()));
     }
 
     // 새로운 장소 등록
@@ -93,16 +116,17 @@ public class PlaceService {
     }
 
     // 즐겨찾기 조회
-    public List<FavoriteResponseDto> findFavorite() {
+    public List<FavoriteResponseDto> findFavorite(String userName) {
         log.info("findFavorite() start");
-        return favoriteRepository.findFavorite(PageRequest.of(0, 5)).getContent();
+        return favoriteRepository.findFavorite(PageRequest.of(0, 5), userName).getContent();
     }
 
     // 즐겨찾기 등록
-    public boolean createFavorite(FavoriteDto favoriteDto, Long placeId) {
+    public void createFavorite(String userName, Long placeId) {
+
         log.info("createFavorite() start");
-        favoriteRepository.save(favoriteDto.toEntity(placeRepository.findById(placeId).get()));
-        return true;
+//        favoriteRepository.save(favoriteDto.toEntity(placeRepository.findById(placeId).get()));
+        favoriteRepository.save(Favorite.of(placeRepository.findById(placeId).get(), userName));
     }
 
     // 즐겨찾기 삭제
