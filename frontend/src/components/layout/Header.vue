@@ -1,7 +1,7 @@
 <!-- Author : JHW -->
 <template>
 <div>
-  <b-navbar type="dark" variant="info">
+  <b-navbar type="dark" variant="dark">
     <b-navbar-nav>
       <b-nav-item href="#">Home</b-nav-item>
 
