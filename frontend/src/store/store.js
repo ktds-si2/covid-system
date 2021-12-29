@@ -10,11 +10,19 @@ export const store = new Vuex.Store({
   state: {
     token: 'token',
     test: 'test',
+    isLogin: false,
   },
   mutations: {
     setToken(state, tokenValue) {
-      // 토큰값 Setting     Author : JHW
+      // 토큰값 Setting(로그인)     Author : JHW
       state.token = tokenValue;
+      state.isLogin = true;
+    },
+
+    setTokenEmpty(state) {
+      // 토큰값 비우기(로그아웃)    Author : JHW
+      state.token = '';
+      state.isLogin = false;
     },
   },
   actions: {

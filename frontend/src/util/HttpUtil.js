@@ -1,6 +1,6 @@
 // Author : JHW
 import axios from 'axios';
-// import { store } from '../store/store';
+// import { store } from '../store/store.js';
 
 // Make a axios instance
 const service = axios.create({
