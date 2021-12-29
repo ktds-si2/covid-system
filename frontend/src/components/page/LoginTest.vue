@@ -12,10 +12,15 @@
 </template>
 
 <script>
-import { authenticate } from '@/Service/MemberService';
+import {mapActions} from 'vuex';
 
 export default {
     name:"LoginTest",
+    computed: {
+        getToken() {
+            return this.$store.getters.getToken
+        }
+    },
     data() {
         return {
             tokenDto: 'token',
@@ -25,18 +30,19 @@ export default {
         }
     },
     methods: {
-        async login () {
-            this.tokenDto = (await authenticate({
-                "email":this.email,
-                "password":this.password
-            })).data.token;
-
+        ...mapActions(['loginToken'])
+        ,
+        login() {
+            this.loginToken({
+                'email' : this.email,
+                'password' : this.password
+            })
             this.email = '';
-            this.password = '';          
-            this.$store.state.token = this.tokenDto;     
+            this.password = '';
         },
+        
         print() {
-            alert(this.tokenDto);
+            alert(this.getToken);
         }
     }
 }
