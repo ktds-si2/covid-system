@@ -2,7 +2,7 @@
 <template>
     <div>
         {{this.data}} page
-        <login-test />
+        <login-form />
         Page Test Page
         <page-test />
     
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import LoginTest from './LoginTest.vue'
+import LoginForm from './LoginForm.vue'
 import PageTest from './PageTest.vue'
 
     export default {
-        components: { LoginTest, PageTest },
+        components: { LoginForm, PageTest },
         name:'Main',
         data() {
             return {
