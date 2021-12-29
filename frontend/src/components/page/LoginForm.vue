@@ -30,6 +30,7 @@
       </b-form-group>
       <b-button type="button" @click="login()" variant="primary">Login</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button type="button" @click="signup()" variant="primary">Signup</b-button>
     </b-form>
       <button @click="print()">토큰 출력</button>
 
@@ -38,6 +39,7 @@
 
 <script>
 import {mapActions} from 'vuex';
+import {signupMember} from '../../Service/MemberService';
 
 
 export default {
@@ -66,7 +68,12 @@ export default {
             this.email = '';
             this.password = '';
         },
-        
+        signup() {
+          signupMember({
+            'email' : this.email,
+            'password' : this.password
+          })
+        },
         print() {
             alert(this.getToken);
         }
