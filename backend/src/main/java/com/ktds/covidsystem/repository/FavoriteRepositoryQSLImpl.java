@@ -28,16 +28,21 @@ public class FavoriteRepositoryQSLImpl extends QuerydslRepositorySupport impleme
     }
 
     @Override
-    public Page<FavoriteResponseDto> findFavorite(Pageable pageable) {
+    public Page<FavoriteResponseDto> findFavorite(Pageable pageable, String userName) {
         QFavorite favorite = QFavorite.favorite;
         JPQLQuery<FavoriteResponseDto> query = from(favorite)
                 .select(Projections.constructor(FavoriteResponseDto.class,
+                        favorite.place.id,
                         favorite.userName,
                         favorite.place.placeName,
                         favorite.place.address,
                         favorite.place.phoneNumber,
                         favorite.place.currentNumberOfPeople,
                         favorite.place.capacity));;
+
+        if (userName != null) {
+            query.where(favorite.userName.eq(userName));
+        }
 
         List<FavoriteResponseDto> favoriteList = getQuerydsl()
                 .applyPagination(pageable, query)

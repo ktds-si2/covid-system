@@ -8,6 +8,5 @@ import org.springframework.data.domain.Pageable;
 
 // Author : KJH
 public interface FavoriteRepositoryQSL {
-    public Page<FavoriteResponseDto> findFavorite(Pageable pageable);
-
+    public Page<FavoriteResponseDto> findFavorite(Pageable pageable, String userName);
 }

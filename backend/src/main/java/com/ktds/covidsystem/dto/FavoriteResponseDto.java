@@ -22,7 +22,11 @@ public record FavoriteResponseDto(
         this.capacity = capacity;
     }
 
-    public FavoriteResponseDto(String userName, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity) {
-        this(null, null, userName, placeName, address, phoneNumber, currentNumberOfPeople, capacity);
+    public FavoriteResponseDto(Long place_id, String userName, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity) {
+        this(null, place_id, userName, placeName, address, phoneNumber, currentNumberOfPeople, capacity);
+    }
+
+    public FavoriteResponseDto(Long place_id) {
+        this(null, place_id, null, null, null, null, null, null);
     }
 }

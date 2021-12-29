@@ -26,7 +26,16 @@ public class PlaceRepositoryQSLImpl extends QuerydslRepositorySupport implements
     @Override
     public Page<PlaceDto> findPlace(PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, Pageable pageable) {
         QPlace place = QPlace.place;
-        JPQLQuery<PlaceDto> query = select();
+        JPQLQuery<PlaceDto> query = from(place)
+                .select(Projections.constructor(PlaceDto.class,
+                        place.id,
+                        place.placeType,
+                        place.placeName,
+                        place.address,
+                        place.phoneNumber,
+                        place.currentNumberOfPeople,
+                        place.capacity,
+                        place.memo));
 
         if (placeType != null) {
             query.where(place.placeType.eq(placeType));
@@ -58,19 +67,5 @@ public class PlaceRepositoryQSLImpl extends QuerydslRepositorySupport implements
 //                .fetch();
 
         return new PageImpl<>(places, pageable, query.fetchCount());
-    }
-
-    public JPQLQuery<PlaceDto> select() {
-        QPlace place = QPlace.place;
-        return from(place)
-                .select(Projections.constructor(PlaceDto.class,
-                        place.id,
-                        place.placeType,
-                        place.placeName,
-                        place.address,
-                        place.phoneNumber,
-                        place.currentNumberOfPeople,
-                        place.capacity,
-                        place.memo));
     }
 }
