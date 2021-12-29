@@ -1,25 +1,27 @@
 <!-- Author : JHW -->
 <template>
     <div>
-        {{this.data}} page
-        <login-form />
-        Page Test Page
-        <page-test />
+        <router-link to="/pagetest"> PageTest </router-link> |
+        <router-link to="/login"> Login </router-link>
+        <router-view/>
+        <br>
+        <!-- {{this.data}} page -->
+        <!-- <login-form /> -->
+        
     
     </div>
 </template>
 
-<script>
-import LoginForm from './LoginForm.vue'
-import PageTest from './PageTest.vue'
+// <script>
+// import LoginForm from './LoginForm.vue'
 
-    export default {
-        components: { LoginForm, PageTest },
-        name:'Main',
-        data() {
-            return {
-                data : 'Main',
-            }
-        }        
-    }
-</script>
+//     export default {
+//         components: { LoginForm },
+//         name:'Main',
+//         data() {
+//             return {
+//                 data : 'Main',
+//             }
+//         }        
+//     }
+// </script>
