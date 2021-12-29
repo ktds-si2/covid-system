@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
+import router from './router'
 
 // Vuex 설정
 import { store } from './store/store.js';
@@ -18,8 +19,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.config.productionTip = false;
 
 new Vue({
+  router,
   render: (h) => h(App),
-  
   // Vuex 설정
   store
 }).$mount('#app');
