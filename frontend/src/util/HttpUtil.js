@@ -1,6 +1,5 @@
 // Author : JHW
 import axios from 'axios';
-// import { store } from '../store/store.js';
 
 // Make a axios instance
 const service = axios.create({
@@ -10,7 +9,6 @@ const service = axios.create({
   timeout: 8000,
   headers: {
     'Content-Type': 'application/json',
-    // Authorization: store.getters.getToken,
   },
 });
 
