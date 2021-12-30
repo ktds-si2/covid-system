@@ -1,26 +1,20 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router'
+import router from './router';
 
 // Vuex 설정
 import { store } from './store/store.js';
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue);
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin);
-
-// Import Bootstrap an BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
+Vue.use(Vuetify);
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
+  vuetify: new Vuetify(),
   render: (h) => h(App),
   // Vuex 설정
-  store
+  store,
 }).$mount('#app');
