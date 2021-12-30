@@ -37,6 +37,7 @@
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
+        <!-- 리스트 아이템 -->
           <v-col cols="2">
             <v-sheet rounded="lg">
               <v-list color="transparent">
@@ -67,18 +68,21 @@
               </v-list>
             </v-sheet>
           </v-col>
+          <!-- -->
 
           <v-col>
             <v-sheet
               min-height="70vh"
               rounded="lg"
             >
+            메인화면
               <!--  -->
             </v-sheet>
           </v-col>
         </v-row>
       </v-container>
     </v-main>
+
   </v-app>
 </template>
 
