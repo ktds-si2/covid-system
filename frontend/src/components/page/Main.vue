@@ -3,6 +3,7 @@
     <div>
         <router-link to="/pagetest"> PageTest </router-link> |
         <router-link to="/login"> Login </router-link>
+        <router-link to="/vuetify">뷰티파이</router-link>
         <router-view/>
         <br>
         <!-- {{this.data}} page -->

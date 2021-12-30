@@ -12,14 +12,14 @@ values
 ('PARTY', 'ktds 무도회장', '서울시 강남구 가나대로 123 2층', '010-1234-5678', 3, 1, '에블바리')
 ;
 
--- insert into `member` (`email`, `password`, `authority`, `activated`)
--- values
--- ('test', '1234', 'USER'),
--- ('test2','1234', 'ADMIN' )
--- ;
+insert into `member` (`email`, `password`, `authority`, `activated`)
+values
+('test', '1234', 'USER',1),
+('test2','1234', 'ADMIN',1 )
+;
 
--- insert into `favorite` (`place_id`, `user_Name`)
--- values
--- (1, 'test'),
--- (1, 'test2')
--- ;
+insert into `favorite` (`place_id`, `user_Name`)
+values
+(1, 'test'),
+(1, 'test2')
+;
