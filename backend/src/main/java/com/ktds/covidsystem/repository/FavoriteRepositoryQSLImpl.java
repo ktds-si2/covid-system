@@ -32,6 +32,7 @@ public class FavoriteRepositoryQSLImpl extends QuerydslRepositorySupport impleme
         QFavorite favorite = QFavorite.favorite;
         JPQLQuery<FavoriteResponseDto> query = from(favorite)
                 .select(Projections.constructor(FavoriteResponseDto.class,
+                        favorite.id,
                         favorite.place.id,
                         favorite.userName,
                         favorite.place.placeName,
