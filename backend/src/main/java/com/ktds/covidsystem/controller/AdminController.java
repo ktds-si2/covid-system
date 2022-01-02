@@ -1,5 +1,6 @@
 package com.ktds.covidsystem.controller;
 
+import com.ktds.covidsystem.dto.FavoriteResponseDto;
 import com.ktds.covidsystem.dto.PlaceDto;
 import com.ktds.covidsystem.service.PlaceService;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +48,7 @@ public class AdminController {
      * @param placeDto
      * @return Insert into place values (placeDto) , return true
      */
-    @PostMapping("/place/new")
+    @PostMapping("/place")
     public boolean adminNewPlaceRegister(@RequestBody PlaceDto placeDto) {
         return placeService.createNewPlace(placeDto);
     }
@@ -85,8 +86,8 @@ public class AdminController {
      * @return Delete from Place where placeId
      * @throws Exception
      */
-    @DeleteMapping("/place/{placeId}")
-    public boolean adminPlacePageDetailDelete(@PathVariable String placeId) throws Exception {
-        return placeService.deleteDetailPlacePage(Long.valueOf(placeId));
+    @DeleteMapping("/place")
+    public boolean deletePlace(@RequestBody FavoriteResponseDto favoriteResponseDto) {
+        return placeService.deletePlace(favoriteResponseDto.place_id());
     }
 }
