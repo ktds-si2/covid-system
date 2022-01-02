@@ -9,12 +9,7 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'Main',
-      component: () => import('./components/page/LoginForm.vue'),
-    },
-    {
-      path: '/pagetest',
-      name: 'PageTest',
-      component: () => import('./components/page/PageTest.vue'),
+      component: () => import('./components/page/Main.vue'),
     },
     {
       path: '/login',
@@ -22,9 +17,25 @@ const router = new VueRouter({
       component: () => import('./components/page/LoginForm.vue'),
     },
     {
-      path: '/vuetify',
-      component: () => import('./components/page/VuetifyTest.vue'),
+      path: '/favorite',
+      name: 'Favorite',
+      component: () => import('./components/page/Favorite.vue')
     },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('./components/page/Admin.vue')
+    },
+    {
+      path: '/admin/createPage',
+      name: 'CreatePage',
+      component: () => import('./components/page/admin_page/CreatePage')
+    },
+    {
+      path: '/admin/deletePage',
+      name: 'DeletePage',
+      component: () => import('./components/page/admin_page/DeletePage')
+    }
   ],
 });
 

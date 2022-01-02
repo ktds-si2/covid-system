@@ -11,6 +11,7 @@ import com.ktds.covidsystem.dto.PlaceResponseDto;
 import com.ktds.covidsystem.repository.FavoriteRepository;
 import com.ktds.covidsystem.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +22,10 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Author : KJH
 @Slf4j
@@ -107,11 +111,10 @@ public class PlaceService {
     }
 
     // 장소 상세페이지 삭제
-    public boolean deleteDetailPlacePage(Long id) throws Exception {
-
-        log.info("deleteDetailPlacePage() start");
+    public boolean deletePlace(Long id) {
+        log.info("deletePlace() start");
         placeRepository.deleteById(id);
-//        placeRepository.find
+
         return true;
     }
 
@@ -123,23 +126,44 @@ public class PlaceService {
 
     // 즐겨찾기 등록
     public void createFavorite(String userName, Long placeId) {
-
         log.info("createFavorite() start");
-//        favoriteRepository.save(favoriteDto.toEntity(placeRepository.findById(placeId).get()));
         favoriteRepository.save(Favorite.of(placeRepository.findById(placeId).get(), userName));
+
+        // 즐겨찾기 중복을 막는 로직
+
+        // place id를 담는 list
+        ArrayList<Long> id_List = new ArrayList<>();
+        // favorite table의 id를 담는 list, 해당 table에 있는 id 값은 favorite table delete에 사용됨
+        ArrayList<Long> id_dup_List = new ArrayList<>();
+
+        // favorite table을 userName 으로 조회
+        List<FavoriteResponseDto> placeList = this.findFavorite(userName);
+        // placeList을 loop 돌며 id_List에 place_id를 담음
+        // id_List에 place_id가 이미 있으면, id_dup_List에 해당 데이터의 favoirte의 id를 담음
+        for(FavoriteResponseDto favoriteResponseDto: placeList) {
+            Long tempPlaceId = favoriteResponseDto.place_id();
+            if (!id_List.contains(tempPlaceId)) {
+                id_List.add(tempPlaceId);
+            }
+            else {
+                id_dup_List.add(favoriteResponseDto.favorite_id());
+            }
+        }
+
+        for (Long id : id_dup_List) {
+            this.deleteFavorite(id);
+        }
+
     }
 
     // 즐겨찾기 삭제
-    public boolean deleteFavorite(Long id) {
+    public void deleteFavorite(Long id) {
         log.info("deleteFavorite() start");
         favoriteRepository.deleteById(id);
-        return true;
     }
 
     // 즐겨찾기 수정
-    public boolean modifyFavorite() {
+    public void modifyFavorite() {
         log.info("modifyFavorite() start");
-
-        return true;
     }
 }

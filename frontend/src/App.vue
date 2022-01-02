@@ -1,19 +1,21 @@
 <template>
-  <div id="app">
-    <Header />
-    <Main/>
-  </div>
+  <v-app id="app">
+    <appbar/>
+    <drawer />
+    <v-main>
+      <router-view/>
+    </v-main>
+    
+  </v-app>
 </template>
 
 <script>
-import Header from './components/layout/Header.vue'
-import Main from './components/page/Main.vue'
+import drawer from './components/layout/drawer.vue'
+import appbar from './components/layout/appbar.vue';
+
 
 export default {
   name: 'App',
-  components: {
-    Header, Main
-  }
-}
+  components: {drawer, appbar},
+};
 </script>
-

@@ -1,10 +1,23 @@
 <!-- API 테스트용  Author : JHW -->
 <template>
-    <div>
-      로그인 폼
-      <button @click="print()">토큰 출력</button>
-      <v-btn elevation="19" @click="print()">로그인</v-btn>
-  </div>
+    <v-container class="pa-8">
+        <v-row class="mt-8">
+        <v-col sm="2"> 
+            <div class="menuTitle" > 로그인 </div>
+            <v-divider class="my-2"> </v-divider>   
+        </v-col>    
+    </v-row>
+        <v-row class="mt-8">
+            <v-col sm="3">
+                <v-text-field v-model="email" label="email" > </v-text-field>
+                <v-text-field v-model="password" label="password"> </v-text-field>
+                <v-btn @click="login"> Login </v-btn>
+                <!-- <v-btn @click="print"> getToken </v-btn> -->
+            </v-col>
+        </v-row>
+        
+    </v-container>
+    
 </template>
 
 <script>
@@ -37,6 +50,7 @@ export default {
             })
             this.email = '';
             this.password = '';
+            alert('로그인 되었습니다. ')
         },
         signup() {
           signupMember({
@@ -45,8 +59,14 @@ export default {
           })
         },
         print() {
-            alert(this.getToken);
+            alert('Bearer ' + this.getToken);
         }
     }
 }
 </script>
+<style scoped>
+.menuTitle {
+  font-size: 17px;
+}
+
+</style>
