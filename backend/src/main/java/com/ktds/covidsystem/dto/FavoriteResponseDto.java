@@ -4,7 +4,7 @@ import com.ktds.covidsystem.domain.Favorite;
 
 // author: KJH
 public record FavoriteResponseDto(
-        Long favorite_id,
+        Long id,
         Long place_id,
         String userName,
         String placeName,
@@ -23,8 +23,8 @@ public record FavoriteResponseDto(
 
     public static FavoriteResponseDto from(Favorite favorite) {
         return new FavoriteResponseDto(
-                favorite.getPlace().getId(),
                 favorite.getId(),
+                favorite.getPlace().getId(),
                 favorite.getUserName(),
                 favorite.getPlace().getPlaceName(),
                 favorite.getPlace().getAddress(),
