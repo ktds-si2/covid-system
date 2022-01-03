@@ -46,6 +46,11 @@ const router = new VueRouter({
       name: 'DeletePage',
       component: () => import('./components/page/admin_page/DeletePage'),
     },
+    {
+      path: '/admin/userManagement',
+      name: 'DeletePage',
+      component: () => import('./components/page/admin_page/UserManagement'),
+    },
   ],
 });
 

@@ -35,3 +35,25 @@ export function deletePlace(params, token) {
     },
   });
 }
+
+// 유저 리스트 얻기
+export function getUserList(token) {
+  return request({
+    url: "/users",
+    method: 'get',
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  })
+}
+
+export function deleteUser(params, token) {
+  return request({
+    url: "/users",
+    method: 'delete',
+    data: params,
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  })
+}
