@@ -2,7 +2,7 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { authenticate } from '@/Service/MemberService';
+import { authenticate, signupMember } from '@/Service/MemberService';
 import router from '../router';
 
 Vue.use(Vuex);
@@ -27,7 +27,7 @@ export const store = new Vuex.Store({
     setTokenEmpty(state) {
       // 토큰값, 권한 비우기(로그아웃)    Author : JHW
       state.token = '';
-      state.authority = '';
+      state.userAuthority = '';
       state.isLogin = false;
     },
   },
@@ -41,6 +41,17 @@ export const store = new Vuex.Store({
       });
 
       commit('setToken', loginResponse.data);
+    },
+
+    async signupAction({ commit }, singupRequest) {
+      // api 서버에 회원가입 요청     Author : JHW
+
+      await signupMember({
+        email: singupRequest.email,
+        password: singupRequest.password,
+      });
+
+      commit('setTokenEmpty');
     },
   },
   getters: {

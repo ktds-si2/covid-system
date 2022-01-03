@@ -10,7 +10,7 @@
         <v-row class="mt-8">
             <v-col sm="3">
                 <v-text-field v-model="email" label="email" > </v-text-field>
-                <v-text-field v-model="password" label="password"> </v-text-field>
+                <v-text-field v-model="password" label="password" type="password"> </v-text-field>
                 <v-btn @click="login"> Login </v-btn>
                 <!-- <v-btn @click="print"> getToken </v-btn> -->
             </v-col>
