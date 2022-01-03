@@ -12,6 +12,7 @@ import com.ktds.covidsystem.repository.PlaceRepository;
 import com.ktds.covidsystem.service.PlaceService;
 import com.ktds.covidsystem.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/place")
+@Slf4j
 public class PlaceController {
 
     private final PlaceService placeService;
@@ -32,6 +34,8 @@ public class PlaceController {
      */
     @GetMapping()
     public List<PlaceDto> placeList() {
+
+        log.info("/GET placeList : {} ",placeService.findAllPlace());
         return placeService.findAllPlace();
     }
 
@@ -62,6 +66,7 @@ public class PlaceController {
     @GetMapping("/favorite")
     public List<FavoriteResponseDto> findFavorite()
     {
+        log.info("/GET favorite : {}", placeService.findFavorite(SecurityUtil.getCurrentUsername().get()));
         return placeService.findFavorite(SecurityUtil.getCurrentUsername().get());
     }
 

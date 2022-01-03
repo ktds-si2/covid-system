@@ -149,7 +149,7 @@ public class PlaceService {
                 id_List.add(tempPlaceId);
             }
             else {
-                id_dup_List.add(favoriteResponseDto.favorite_id());
+                id_dup_List.add(favoriteResponseDto.id());
             }
         }
 
