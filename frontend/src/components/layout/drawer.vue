@@ -12,12 +12,26 @@
       </v-list-item>
     </v-list>
 
-    <v-divider class="mb-2" />
-
+    <v-divider class="mb-2" />  <!-- 메뉴바 변경(로그인, 권한)    Author : JHW  -->
     <v-list expand nav>
-      <v-list-item v-for="item in items" :key="item.title" :to="item.link" link>
+      <v-list-item @click="moveHome()" link>
         <v-list-item-content>
-          <v-list-item-title class="secondlist"> {{ item.title }} </v-list-item-title>
+          <v-list-item-title class="secondlist"> Home </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item @click="moveFavorite()" link>
+        <v-list-item-content>
+          <v-list-item-title class="secondlist"> Favorite </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item @click="moveLogin()" link>
+        <v-list-item-content>
+          <v-list-item-title class="secondlist"> {{isLogin? 'MyPage' : 'Login'}} </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item @click="moveAdmin()" v-if="userAuthority == 'ROLE_ADMIN'" link>
+        <v-list-item-content>
+          <v-list-item-title class="secondlist"> Admin </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -25,18 +39,35 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
+
 export default {
   name: "drawer",
-
+  computed: { 
+    ...mapState(['isLogin','userAuthority'])     // 로그인, 유저권한 확인   Author : JHW
+  },
   data: () => ({
     drawer: null,
-    items: [
-      { title: "Home", link: "/" },
-      { title: "Favorite", link: "/favorite" },
-      { title: "Login", link: "/login" },
-      { title: "Admin", link: "/admin"}
-    ],
+ 
+    
   }),
+  methods: {  // 라우터 이동 함수   Author : JHW
+    moveHome() {
+      this.$router.push('/');
+    },
+    moveFavorite() {
+      this.$router.push('/favorite');
+    },
+    moveLogin() {
+      if(!this.isLogin)
+        this.$router.push('/login')
+      else
+        this.$router.push('/');
+    },
+    moveAdmin() {
+      this.$router.push('/admin');
+    }
+  }
 };
 </script>
 <style scoped>
