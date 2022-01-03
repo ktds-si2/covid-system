@@ -60,15 +60,18 @@ export default {
     },
     async deleteFavorite() {
       for (let i = 0; i < this.selected.length; i++) {
+        console.log(this.selected)
         await deleteFavorite(
+          
           this.$store.getters.getToken, 
           {
-          place_id: this.selected[i].id,
+          id: this.selected[i].id,
         }
         );
       }
       alert("즐겨찾기가 삭제되었습니다");
       this.selected = [];
+      this.getPlace();
    },
   }
 }

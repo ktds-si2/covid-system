@@ -92,8 +92,8 @@ public class PlaceController {
      * @return Delete from Favorite where favorite_id
      */
     @DeleteMapping("/favorite")
-    public boolean deleteFavorite(@RequestParam Long favorite_id) {
-        placeService.deleteFavorite(favorite_id);
+    public boolean deleteFavorite(@RequestBody FavoriteResponseDto favoriteResponseDto) {
+        placeService.deleteFavorite(favoriteResponseDto.id());
         return true;
     }
 }
