@@ -32,6 +32,7 @@ public class MemberService {
             throw new EmailDuplicateException(ErrorCode.EMAIL_DUPLICATED_ERROR);
 
         Member member = new Member(
+                signupRequest.name(),
                 signupRequest.email(),
                 encodingPassword(signupRequest.password()),
                 Authority.ROLE_USER,

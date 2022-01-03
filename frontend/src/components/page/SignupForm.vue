@@ -36,6 +36,7 @@ export default {
         ...mapActions(['signupAction']),
         signup() {
             this.signupAction({
+                name: this.name,
                 email: this.email, 
                 password:this.password
             });

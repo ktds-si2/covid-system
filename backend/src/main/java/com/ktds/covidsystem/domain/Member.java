@@ -18,6 +18,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
     private String email;
     private String password;
 
@@ -28,7 +29,8 @@ public class Member {
     @Column(name = "activated")
     private boolean activated;
 
-    public Member(String email, String password, Authority authority, boolean activated) {
+    public Member(String name, String email, String password, Authority authority, boolean activated) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.authority = authority;

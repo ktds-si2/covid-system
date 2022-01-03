@@ -13,12 +13,14 @@ export const store = new Vuex.Store({
     test: 'test',
     isLogin: false, // 로그인 확인 여부
     userAuthority: 'userAuthority', // 접속한 유저 권한
+    userName: 'userName', // 접속한 유저 이름
   },
   mutations: {
     setToken(state, loginResponse) {
       // 토큰값, 권한 Setting(로그인)     Author : JHW
       state.token = loginResponse.token;
       state.userAuthority = loginResponse.authority;
+      state.userName = loginResponse.memberName;
       state.isLogin = true;
 
       router.push('/');
@@ -28,6 +30,7 @@ export const store = new Vuex.Store({
       // 토큰값, 권한 비우기(로그아웃)    Author : JHW
       state.token = '';
       state.userAuthority = '';
+      state.userName = '';
       state.isLogin = false;
     },
   },
@@ -47,6 +50,7 @@ export const store = new Vuex.Store({
       // api 서버에 회원가입 요청     Author : JHW
 
       await signupMember({
+        name: singupRequest.name,
         email: singupRequest.email,
         password: singupRequest.password,
       });

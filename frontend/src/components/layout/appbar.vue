@@ -10,7 +10,7 @@
         LOGOUT
       </v-btn>
       <v-spacer></v-spacer>
-
+      <span v-if="isLogin"><span style="font-weight: bold">{{userName}}</span> 님 환영합니다.</span>
       <v-responsive max-width="260">
         <v-text-field
           dense
@@ -32,7 +32,7 @@ import {mapMutations, mapState} from 'vuex';
 export default {
   name: "appbar",
   computed : {
-    ...mapState(['isLogin'])
+    ...mapState(['isLogin','userName'])
   },
   data() {
     return {

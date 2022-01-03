@@ -5,6 +5,7 @@ import com.ktds.covidsystem.dto.MemberResponseDto;
 import com.ktds.covidsystem.dto.SignupRequest;
 import com.ktds.covidsystem.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
 
     @PostMapping("/signup")
     public ResponseEntity<Member> signup(@RequestBody SignupRequest signupRequest) {
+        log.info("/POST signup : {}", signupRequest);
         return ResponseEntity.ok(memberService.singUp(signupRequest));
     }
 

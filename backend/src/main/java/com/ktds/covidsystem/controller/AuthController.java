@@ -1,6 +1,7 @@
 package com.ktds.covidsystem.controller;
 
 import com.ktds.covidsystem.constant.Authority;
+import com.ktds.covidsystem.domain.Member;
 import com.ktds.covidsystem.dto.LoginRequest;
 import com.ktds.covidsystem.dto.TokenDto;
 import com.ktds.covidsystem.repository.MemberRepository;
@@ -46,10 +47,10 @@ public class AuthController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        // 접속한 유저의 권한 확인
-        Authority memberAuthority = memberRepository.findByEmail(loginRequest.email()).get().getAuthority();
+        // 접속한 유저
+        Member loginMember = memberRepository.findByEmail(loginRequest.email()).get();
 
-        return new ResponseEntity<>(new TokenDto(jwt, memberAuthority), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(new TokenDto(jwt, loginMember.getAuthority(), loginMember.getName()), httpHeaders, HttpStatus.OK);
     }
 
 }
