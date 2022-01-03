@@ -14,8 +14,8 @@ values
 
 insert into `member` (`email`, `password`, `authority`, `activated`)
 values
-('test', '1234', 'USER',1),
-('test2','1234', 'ADMIN',1 )
+('test', '1234', 'ROLE_ADMIN',1),
+('test2','1234', 'ROLE_ADMIN',1 )
 ;
 
 insert into `favorite` (`place_id`, `user_Name`)

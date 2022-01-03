@@ -1,5 +1,7 @@
 package com.ktds.covidsystem.dto;
 
+import com.ktds.covidsystem.domain.Favorite;
+
 // author: KJH
 public record FavoriteResponseDto(
         Long favorite_id,
@@ -18,4 +20,12 @@ public record FavoriteResponseDto(
     public FavoriteResponseDto(Long place_id) {
         this(null, place_id, null, null, null, null, null, null);
     }
+
+//    public static FavoriteResponseDto from(Favorite favorite) {
+//        return new FavoriteResponseDto(
+//                favorite.getId(),
+//                favorite.getPlace().getId(),
+//                favorite.get
+//                ;
+//    }
 }
