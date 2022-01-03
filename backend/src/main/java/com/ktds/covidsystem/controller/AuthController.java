@@ -3,6 +3,7 @@ package com.ktds.covidsystem.controller;
 import com.ktds.covidsystem.constant.Authority;
 import com.ktds.covidsystem.domain.Member;
 import com.ktds.covidsystem.dto.LoginRequest;
+import com.ktds.covidsystem.dto.MemberResponseDto;
 import com.ktds.covidsystem.dto.TokenDto;
 import com.ktds.covidsystem.repository.MemberRepository;
 import com.ktds.covidsystem.security.JwtFilter;
@@ -16,6 +17,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // Author : JHW
 @CrossOrigin("*")
@@ -53,4 +56,13 @@ public class AuthController {
         return new ResponseEntity<>(new TokenDto(jwt, loginMember.getAuthority(), loginMember.getName()), httpHeaders, HttpStatus.OK);
     }
 
+    @GetMapping("/users")
+    public List<MemberResponseDto> findAllUser() {
+        return memberRepository.findAll().stream().map(MemberResponseDto::ofWithAuthority).toList();
+    }
+
+    @DeleteMapping("/users")
+    public void deleteUser(@RequestBody MemberResponseDto memberResponseDto) {
+        memberRepository.deleteById(memberResponseDto.id());
+    }
 }
