@@ -121,7 +121,10 @@ public class PlaceService {
     // 즐겨찾기 조회
     public List<FavoriteResponseDto> findFavorite(String userName) {
         log.info("findFavorite() start");
-        return favoriteRepository.findFavorite(PageRequest.of(0, 5), userName).getContent();
+//        return favoriteRepository.findFavorite(PageRequest.of(0, 5), userName).getContent();
+        return favoriteRepository.findByUserName(userName)
+                .stream().map(FavoriteResponseDto::from)
+                .toList();
     }
 
     // 즐겨찾기 등록
