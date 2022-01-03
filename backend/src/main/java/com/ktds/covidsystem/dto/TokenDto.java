@@ -1,4 +1,6 @@
 package com.ktds.covidsystem.dto;
 
-public record TokenDto(String token) {
+import com.ktds.covidsystem.constant.Authority;
+
+public record TokenDto(String token, Authority authority) {
 }

@@ -3,11 +3,12 @@
   <v-app-bar color="white" flat app>
     <v-container class="py-6 fill-height">
       <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
-
-      <v-btn v-for="link in links" :key="link" text>
-        {{ link }}
+      <v-btn @click="signup()" text>
+        SIGNUP
       </v-btn>
-
+      <v-btn @click="logout()" text>
+        LOGOUT
+      </v-btn>
       <v-spacer></v-spacer>
 
       <v-responsive max-width="260">
@@ -26,17 +27,32 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
+
 export default {
   name: "appbar",
   data() {
     return {
       data: '',
-      links: ["arr1", "arr2", "Profile", "Updates"],
+      items : [
+        {title: "signup", method: "this.moveSignup()"},
+        {title: "logout", method: "this.logout()"}
+      ]
+      
     };
   },
   methods: {
-    input() {
+    ...mapMutations(['setTokenEmpty'])
+    ,input() {
       // this.$store.dispatch()
+    },
+    logout() {
+      this.setTokenEmpty();
+      alert("로그아웃되었습니다.")
+      this.$router.push('/login');
+    },
+    signup() {
+      alert("signup");
     }
   }
 };

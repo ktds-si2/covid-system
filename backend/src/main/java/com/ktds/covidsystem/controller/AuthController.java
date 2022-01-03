@@ -1,7 +1,9 @@
 package com.ktds.covidsystem.controller;
 
+import com.ktds.covidsystem.constant.Authority;
 import com.ktds.covidsystem.dto.LoginRequest;
 import com.ktds.covidsystem.dto.TokenDto;
+import com.ktds.covidsystem.repository.MemberRepository;
 import com.ktds.covidsystem.security.JwtFilter;
 import com.ktds.covidsystem.security.TokenProvider;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +23,12 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final MemberRepository memberRepository;
 
-    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, MemberRepository memberRepository) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.memberRepository = memberRepository;
     }
 
     @PostMapping("/authenticate")
@@ -42,7 +46,10 @@ public class AuthController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
+        // 접속한 유저의 권한 확인
+        Authority memberAuthority = memberRepository.findByEmail(loginRequest.email()).get().getAuthority();
+
+        return new ResponseEntity<>(new TokenDto(jwt, memberAuthority), httpHeaders, HttpStatus.OK);
     }
 
 }
