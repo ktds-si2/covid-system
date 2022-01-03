@@ -15,21 +15,35 @@
     <v-divider class="mb-2" />  <!-- 메뉴바 변경(로그인, 권한)    Author : JHW  -->
     <v-list expand nav>
       <v-list-item @click="moveHome()" link>
+        <v-list-item-icon>
+          <v-icon> mdi-home-outline </v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title class="secondlist"> Home </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-list-item @click="moveFavorite()" link>
+        <v-list-item-icon>
+          <v-icon> mdi-star-outline </v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title class="secondlist"> Favorite </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
       <v-list-item @click="moveLogin()" link>
+        <v-list-item-icon>
+          <v-icon> {{isLogin? 'mdi-account-outline' : 'mdi-login'}} </v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title class="secondlist"> {{isLogin? 'MyPage' : 'Login'}} </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
       <v-list-item @click="moveAdmin()" v-if="userAuthority == 'ROLE_ADMIN'" link>
+        <v-list-item-icon>
+          <v-icon> mdi-shield-account-outline </v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title class="secondlist"> Admin </v-list-item-title>
         </v-list-item-content>
@@ -48,7 +62,6 @@ export default {
   },
   data: () => ({
     drawer: null,
- 
     
   }),
   methods: {  // 라우터 이동 함수   Author : JHW
