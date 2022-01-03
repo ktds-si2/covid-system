@@ -17,6 +17,11 @@
         <v-text height="40" @click="moveToDeletePage"> <div class="menuList"> 장소 삭제 </div> </v-text>
       </v-col>
     </v-row>
+    <v-row class="mt-8"> 
+      <v-col sm="3">
+        <v-text height="40" @click="moveToUsermanagementPage"> <div class="menuList"> 유저 관리 </div> </v-text>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -44,6 +49,9 @@ export default {
    },
    moveToDeletePage () {
        this.$router.push('/admin/deletePage')
+   },
+   moveToUsermanagementPage() {
+      this.$router.push('/admin/userManagement')
    }
   },
 };
