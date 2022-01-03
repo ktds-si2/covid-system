@@ -3,14 +3,14 @@
   <v-app-bar color="white" flat app>
     <v-container class="py-6 fill-height">
       <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
-      <v-btn @click="signup()" text>
+      <v-btn v-if="!isLogin" @click="signup()" text>
         SIGNUP
       </v-btn>
-      <v-btn @click="logout()" text>
+      <v-btn v-if="isLogin" @click="logout()" text>
         LOGOUT
       </v-btn>
       <v-spacer></v-spacer>
-
+      <span v-if="isLogin"><span style="font-weight: bold">{{userName}}</span> 님 환영합니다.</span>
       <v-responsive max-width="260">
         <v-text-field
           dense
@@ -27,10 +27,13 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import {mapMutations, mapState} from 'vuex';
 
 export default {
   name: "appbar",
+  computed : {
+    ...mapState(['isLogin','userName'])
+  },
   data() {
     return {
       data: '',
@@ -52,7 +55,7 @@ export default {
       this.$router.push('/login');
     },
     signup() {
-      alert("signup");
+      this.$router.push('/signup');
     }
   }
 };

@@ -19,23 +19,28 @@ const router = new VueRouter({
     {
       path: '/favorite',
       name: 'Favorite',
-      component: () => import('./components/page/Favorite.vue')
+      component: () => import('./components/page/Favorite.vue'),
     },
     {
       path: '/admin',
       name: 'Admin',
-      component: () => import('./components/page/Admin.vue')
+      component: () => import('./components/page/Admin.vue'),
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: () => import('./components/page/SignupForm.vue'),
     },
     {
       path: '/admin/createPage',
       name: 'CreatePage',
-      component: () => import('./components/page/admin_page/CreatePage')
+      component: () => import('./components/page/admin_page/CreatePage'),
     },
     {
       path: '/admin/deletePage',
       name: 'DeletePage',
-      component: () => import('./components/page/admin_page/DeletePage')
-    }
+      component: () => import('./components/page/admin_page/DeletePage'),
+    },
   ],
 });
 
