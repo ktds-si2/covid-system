@@ -10,4 +10,5 @@ import java.util.List;
 // Author : KJH
 public interface FavoriteRepository extends JpaRepository<Favorite, Long>, FavoriteRepositoryQSL {
     public List<Favorite> findByUserName(String userName);
+    public void deleteByPlace(Place place);
 }

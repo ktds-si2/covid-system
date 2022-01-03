@@ -113,8 +113,9 @@ public class PlaceService {
     // 장소 상세페이지 삭제
     public boolean deletePlace(Long id) {
         log.info("deletePlace() start");
+        Place place = placeRepository.findById(id).get();
+        favoriteRepository.deleteByPlace(place);
         placeRepository.deleteById(id);
-
         return true;
     }
 

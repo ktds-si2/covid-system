@@ -69,8 +69,8 @@ export default {
         );
       }
       this.selected = [];
-      // this.getPlace()
-      console.log(this.selected)
+      this.getPlace()
+      alert("장소 삭제 완료")
    },
   }
 }
