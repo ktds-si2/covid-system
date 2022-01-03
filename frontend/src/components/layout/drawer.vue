@@ -48,6 +48,15 @@
           <v-list-item-title class="secondlist"> Admin </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+    <v-list-item @click="moveMap()" link>
+        <v-list-item-icon>
+          <v-icon> mdi-shield-account-outline </v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="secondlist"> Map </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -65,6 +74,9 @@ export default {
     
   }),
   methods: {  // 라우터 이동 함수   Author : JHW
+    moveMap() {
+      this.$router.push('/map');
+    },
     moveHome() {
       this.$router.push('/');
     },

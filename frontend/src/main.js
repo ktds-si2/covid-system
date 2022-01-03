@@ -8,8 +8,17 @@ import { store } from './store/store.js';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 // vuetify 기본 icon 추가
-import '@mdi/font/css/materialdesignicons.css'
+import '@mdi/font/css/materialdesignicons.css';
 
+// GoogleMap 설정
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDtNJnHY0jxPYu9QViuEcijwZkmA0gsYVI',
+    libraries: 'places',
+  },
+});
 
 Vue.use(Vuetify);
 

@@ -32,6 +32,11 @@ const router = new VueRouter({
       component: () => import('./components/page/SignupForm.vue'),
     },
     {
+      path: '/map',
+      anme: 'GoogleMap',
+      component: () => import('./components/page/Map.vue'),
+    },
+    {
       path: '/admin/createPage',
       name: 'CreatePage',
       component: () => import('./components/page/admin_page/CreatePage'),
