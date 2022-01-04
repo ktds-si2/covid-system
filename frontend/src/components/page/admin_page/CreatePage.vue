@@ -13,6 +13,7 @@
         <v-text-field v-model="phoneNumber" label="PhoneNumber"> </v-text-field>
         <v-text-field v-model="currentNumberOfPeople" label="CurrentNumberOfPeople"> </v-text-field>
         <v-text-field v-model="capacity" label="Capacity"> </v-text-field>
+        <v-text-field v-model="limitTime" label="LimitTime"> </v-text-field>
       </v-col>
     </v-row>
     <v-row>
@@ -39,6 +40,7 @@ export default {
       phoneNumber: '',
       currentNumberOfPeople: '',
       capacity: '',
+      limitTime: ''
     };
   },
   methods: {
@@ -61,6 +63,9 @@ export default {
       if (typeof this.capacity != "undefined") {
         this.capacity = this.capacity.trim();
       }
+      if (typeof this.limitTime != "undefined") {
+        this.limitTime = this.limitTime.trim();
+      }
 
       this.placeList = await createNewPlace({
         'placeType': this.placeType,
@@ -69,6 +74,7 @@ export default {
         'phoneNumber': this.phoneNumber,
         'currentNumberOfPeople': this.currentNumberOfPeople,
         'capacity': this.capacity,
+        'limitTime': this.limitTime,
         'pageNum': 0,
         'pageSize': 10,
       }, this.$store.getters.getToken); 
@@ -82,6 +88,7 @@ export default {
           this.phoneNumber = ''
           this.currentNumberOfPeople = ''
           this.capacity = ''
+          this.limitTime = ''
           this.$router.go(-1)
       }
       else {

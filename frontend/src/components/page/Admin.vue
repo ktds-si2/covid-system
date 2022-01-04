@@ -22,6 +22,11 @@
         <v-text height="40" @click="moveToUsermanagementPage"> <div class="menuList"> 유저 관리 </div> </v-text>
       </v-col>
     </v-row>
+    <v-row class="mt-8"> 
+      <v-col sm="3">
+        <v-text height="40" @click="moveToUpdatePolicyPage"> <div class="menuList"> 정책 변경 </div> </v-text>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -52,6 +57,9 @@ export default {
    },
    moveToUsermanagementPage() {
       this.$router.push('/admin/userManagement')
+   },
+   moveToUpdatePolicyPage() {
+     this.$router.push('/admin/updatePolicy')
    }
   },
 };
