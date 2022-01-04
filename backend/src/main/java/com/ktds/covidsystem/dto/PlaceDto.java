@@ -16,20 +16,21 @@ public record PlaceDto(
         Integer currentNumberOfPeople,
         Integer capacity,
         String memo,
+        String limitTime,
         LocalDateTime createdAt,
         LocalDateTime modifiedAt
 ) {
 
-    public PlaceDto(Long id, PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String memo) {
-        this(id, placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, null, null);
+    public PlaceDto(Long id, PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String memo, String limitTime) {
+        this(id, placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, limitTime,null, null);
     }
 
-    public PlaceDto(PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String memo) {
-        this(null,  placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, null, null);
+    public PlaceDto(PlaceType placeType, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String memo, String limitTime) {
+        this(null,  placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, limitTime, null, null);
     }
 
     public static PlaceDto idOnly(Long id) {
-        return PlaceDto.of(id, null,null,null, null, null, null,null, null, null, null);
+        return PlaceDto.of(id, null,null,null, null, null, null,null, null, null,null, null);
     }
 
     public static PlaceDto of(
@@ -42,11 +43,12 @@ public record PlaceDto(
             Integer currentNumberOfPeople,
             Integer capacity,
             String memo,
+            String limitTime,
             LocalDateTime createdAt,
             LocalDateTime modifiedAt
     ) {
 
-        return new PlaceDto(id, placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, createdAt, modifiedAt);
+        return new PlaceDto(id, placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, limitTime,createdAt, modifiedAt);
     }
 
     public static PlaceDto from(Place place) {
@@ -59,13 +61,14 @@ public record PlaceDto(
                 place.getCurrentNumberOfPeople(),
                 place.getCapacity(),
                 place.getMemo(),
+                place.getLimitTime(),
                 place.getCreatedAt(),
                 place.getModifiedAt()
         );
     }
 
     public Place toEntity() {
-        return Place.of(placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
+        return Place.of(placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, limitTime);
     }
 
     public Place updateEntity(Place place) {

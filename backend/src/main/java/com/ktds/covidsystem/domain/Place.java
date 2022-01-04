@@ -56,6 +56,10 @@ public class Place {
     @Column
     private String memo;
 
+    @Setter
+    @Column
+    private String limitTime;
+
     @Column(nullable = false, insertable = false, updatable = false,
             columnDefinition = "datetime default CURRENT_TIMESTAMP")
     @CreatedDate
@@ -78,7 +82,8 @@ public class Place {
             String phoneNumber,
             Integer currentNumberOfPeople,
             Integer capacity,
-            String memo
+            String memo,
+            String limitTime
     ) {
         this.placeType = placeType;
 //        this.user = user;
@@ -88,6 +93,7 @@ public class Place {
         this.currentNumberOfPeople = currentNumberOfPeople;
         this.capacity = capacity;
         this.memo = memo;
+        this.limitTime = limitTime;
     }
 
     public static Place of(
@@ -97,9 +103,10 @@ public class Place {
             String phoneNumber,
             Integer currentNumberOfPeople,
             Integer capacity,
-            String memo
+            String memo,
+            String limitTime
     ) {
-        return new Place(placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo);
+        return new Place(placeType, placeName, address, phoneNumber, currentNumberOfPeople, capacity, memo, limitTime);
     }
 
 

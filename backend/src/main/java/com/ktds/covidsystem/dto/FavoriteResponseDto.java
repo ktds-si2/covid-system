@@ -11,14 +11,15 @@ public record FavoriteResponseDto(
         String address,
         String phoneNumber,
         Integer currentNumberOfPeople,
-        Integer capacity
+        Integer capacity,
+        String limitTime
 ) {
-    public FavoriteResponseDto(Long place_id, String userName, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity) {
-        this(null, place_id, userName, placeName, address, phoneNumber, currentNumberOfPeople, capacity);
+    public FavoriteResponseDto(Long place_id, String userName, String placeName, String address, String phoneNumber, Integer currentNumberOfPeople, Integer capacity, String limitTime) {
+        this(null, place_id, userName, placeName, address, phoneNumber, currentNumberOfPeople, capacity, limitTime);
     }
 
     public FavoriteResponseDto(Long place_id) {
-        this(null, place_id, null, null, null, null, null, null);
+        this(null, place_id, null, null, null, null, null, null, null);
     }
 
     public static FavoriteResponseDto from(Favorite favorite) {
@@ -30,7 +31,8 @@ public record FavoriteResponseDto(
                 favorite.getPlace().getAddress(),
                 favorite.getPlace().getPhoneNumber(),
                 favorite.getPlace().getCurrentNumberOfPeople(),
-                favorite.getPlace().getCapacity()
+                favorite.getPlace().getCapacity(),
+                favorite.getPlace().getLimitTime()
         );
     }
 }
