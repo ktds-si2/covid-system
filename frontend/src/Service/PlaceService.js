@@ -61,3 +61,12 @@ export function getPlaceDetail(placeId) {
     method: 'get',
   });
 }
+
+// 장소 정책변경 Author : KJH
+export function changePolicy(params) {
+  return request({
+    url: '/place/policy',
+    method: 'post',
+    data: params
+  });
+}
