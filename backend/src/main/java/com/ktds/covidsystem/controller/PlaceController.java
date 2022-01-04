@@ -88,7 +88,7 @@ public class PlaceController {
 
     /**
      * 즐겨 찾기 삭제
-     * @param favorite_id
+     * @param
      * @return Delete from Favorite where favorite_id
      */
     @DeleteMapping("/favorite")

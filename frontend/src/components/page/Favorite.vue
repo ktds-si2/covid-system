@@ -47,6 +47,7 @@ export default {
       { text: "전화 번호", value: "phoneNumber" },
       { text: "현재 인원", value: "currentNumberOfPeople" },
       { text: "최대 인원", value: "capacity" },
+      { text: "제한 시간", value: "limitTime"}
     ],
     placeList: [],
     selected: [],
