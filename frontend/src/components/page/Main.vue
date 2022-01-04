@@ -22,9 +22,11 @@
         <v-data-table
           v-model="selected"
           show-select
+          value="selectedRows"
           :headers="headers"
           :items="placeList.data"
           :items-per-page="5"
+          @click:row="detailClick"
           dark
         >
           <!-- <v-simple-table dark>
@@ -65,13 +67,15 @@
 </template>
 
 <script>
-import { getPlaceList } from "../../Service/PlaceService";
-import { searchPlace } from "../../Service/PlaceService";
-import { createFavorite } from "../../Service/PlaceService";
+import { getPlaceList } from "../../service/PlaceService";
+import { searchPlace } from "../../service/PlaceService";
+import { createFavorite } from "../../service/PlaceService";
+import {mapMutations} from 'vuex';
 
 export default {
   name: "Main",
   components: {},
+  
   data: () => ({
     headers: [
       {
@@ -88,9 +92,15 @@ export default {
     ],
     placeList: [],
     selected: [],
+    selectedRows: [],
     SearchText: "",
   }),
   methods: {
+    ...mapMutations(['setPlaceDetail']),
+    detailClick(row) {  // 상세보기 클릭 이벤트   Author : JHW
+      this.setPlaceDetail(this.placeList.data[row.id- 1]);
+      this.$router.push('/placeDetail');
+    },
     async searching() {
       this.searchPlace(this.SearchText);
     },

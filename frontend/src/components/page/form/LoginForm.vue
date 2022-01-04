@@ -22,7 +22,7 @@
 
 <script>
 import {mapActions} from 'vuex';
-import {signupMember} from '../../Service/MemberService';
+import {signupMember} from '../../../service/MemberService';
 
 
 export default {

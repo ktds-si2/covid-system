@@ -14,7 +14,7 @@ const router = new VueRouter({
     {
       path: '/login',
       name: 'LoginTest',
-      component: () => import('./components/page/LoginForm.vue'),
+      component: () => import('./components/page/form/LoginForm.vue'),
     },
     {
       path: '/favorite',
@@ -29,12 +29,12 @@ const router = new VueRouter({
     {
       path: '/signup',
       name: 'Signup',
-      component: () => import('./components/page/SignupForm.vue'),
+      component: () => import('./components/page/form/SignupForm.vue'),
     },
     {
-      path: '/map',
-      anme: 'GoogleMap',
-      component: () => import('./components/page/Map.vue'),
+      path: '/placeDetail',
+      name: 'PlaceDetail',
+      component: () => import('./components/page/PlaceDetail.vue'),
     },
     {
       path: '/admin/createPage',

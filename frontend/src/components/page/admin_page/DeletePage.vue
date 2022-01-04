@@ -28,8 +28,8 @@
   </v-container>
 </template>
 <script>
-import { getAdminPlace } from "../../../Service/AdminService";
-import { deletePlace } from '../../../Service/AdminService'
+import { getAdminPlace } from "../../../service/AdminService";
+import { deletePlace } from '../../../service/AdminService'
 
 export default {
   name: "DeletePage",

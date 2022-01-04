@@ -29,8 +29,8 @@
   </v-container>
 </template>
 <script>
-import { getFavoriteList } from "../../Service/PlaceService";
-import { deleteFavorite } from "../../Service/PlaceService";
+import { getFavoriteList } from "../../service/PlaceService";
+import { deleteFavorite } from "../../service/PlaceService";
 
 export default {
   name: "Favorite",

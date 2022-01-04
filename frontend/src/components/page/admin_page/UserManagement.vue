@@ -28,8 +28,8 @@
   </v-container>
 </template>
 <script>
-import { getUserList } from "../../../Service/AdminService";
-import { deleteUser } from "../../../Service/AdminService";
+import { getUserList } from "../../../service/AdminService";
+import { deleteUser } from "../../../service/AdminService";
 
 
 export default {
