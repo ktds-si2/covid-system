@@ -109,6 +109,15 @@ public class PlaceService {
 
         return true;
     }
+    // 정책 변경
+    public void changePolicy(PlaceDto placeDto) {
+        // laceRepository.findAll().stream().map(PlaceDto::from).toList();
+        List<PlaceDto> placeDtoList = placeRepository.findAllByPlaceType(placeDto.placeType()).get().stream().map(PlaceDto::from).toList();
+        for (int i=0; i<placeDtoList.size(); i++) {
+            Place place = placeRepository.findById(placeDtoList.get(i).id()).get();
+            place.setLimitTime(placeDto.limitTime());
+        }
+    }
 
     // 장소 상세페이지 삭제
     public boolean deletePlace(Long id) {
