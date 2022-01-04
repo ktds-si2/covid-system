@@ -17,13 +17,15 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-btn @click="changePolicy"> 변경 </v-btn>
+        <v-btn @click="change"> 변경 </v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { changePolicy } from "../../../service/PlaceService";
+
 export default {
   name: "UpdatePolicy",
   computed: {
@@ -39,10 +41,17 @@ export default {
     };
   },
   methods: {
-      changePolicy() {
-          console.log(this.selectedPlaceType)
-      }
+      async change() {
+          await changePolicy({
+            "placeType": this.selectedPlaceType,
+            "limitTime": this.limitTime
+          })
 
+          this.selectedPlaceType = ''
+          this.limitTime = ''
+          alert("정책이 변경되었습니다")
+      }
+      
   },
 };
 </script>

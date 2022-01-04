@@ -109,4 +109,9 @@ public class PlaceController {
         placeService.deleteFavorite(favoriteResponseDto.id());
         return true;
     }
+
+    @PostMapping("/policy")
+    public void getPlaceByPlaceType(@RequestBody PlaceDto placeDto) {
+        placeService.changePolicy(placeDto);
+    }
 }
