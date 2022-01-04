@@ -54,19 +54,6 @@ public class AdminController {
     }
 
     /**
-     * 특정 장소 조회
-     *
-     * @param placeId
-     * @return Select * from Place where placeId
-     * @throws Exception
-     */
-    @GetMapping("/place/{placeId}")
-    public PlaceDto adminPlacePageDetail(@PathVariable String placeId) throws Exception {
-        return placeService.findDetailPlacePage(Long.valueOf(placeId));
-
-    }
-
-    /**
      * 특정 장소 수정
      *
      * @param placeId

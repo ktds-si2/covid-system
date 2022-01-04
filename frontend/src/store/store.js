@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { authenticate, signupMember } from '@/service/MemberService';
+import { getPlaceDetail } from '@/service/PlaceService';
 import router from '../router';
 
 Vue.use(Vuex);
@@ -62,6 +63,13 @@ export const store = new Vuex.Store({
       });
 
       commit('setTokenEmpty');
+    },
+
+    async getPlaceDetail({ commit }, placeId) {
+      // api 서버에 장소 디테일정보 요청 및 Setting   Author : JHW
+      let placeResponse = await getPlaceDetail(placeId);
+
+      commit('setPlaceDetail', placeResponse.data);
     },
   },
   getters: {

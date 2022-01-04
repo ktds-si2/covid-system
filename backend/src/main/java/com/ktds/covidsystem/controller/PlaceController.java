@@ -57,6 +57,19 @@ public class PlaceController {
     }
 
     /**
+     * 특정 장소 조회
+     *
+     * @param placeId
+     * @return Select * from Place where placeId
+     * @throws Exception
+     */
+    @GetMapping("/{placeId}")
+    public PlaceDto adminPlacePageDetail(@PathVariable String placeId) throws Exception {
+        log.info("/GET {placeId} : {}", placeId);
+        return placeService.findDetailPlacePage(Long.valueOf(placeId));
+    }
+
+    /**
      * 모든 즐겨찾기 조회
      * favorite 테이블에는 id, user_name, place_id가 존재
      * place_id를 기준으로 Place 테이블을 조회하여 관련 정보를 함께 select 한다
