@@ -29,32 +29,6 @@
           @click:row="detailClick"
           dark
         >
-          <!-- <v-simple-table dark>
-              <template>
-                <thead>
-                  <tr @click="rowClicked("> 
-                    <th class="text-left">장소 종류</th>
-                    <th class="text-left">장소 이름</th>
-                    <th class="text-left">주소</th>
-                    <th class="text-left">전화 번호</th>
-                    <th class="text-left">현재 인원</th>
-                    <th class="text-left">최대 인원</th>
-                    <th class="text-left">즐겨찾기</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr :key="i" v-for="(place, i) in placeList.data">
-                    <td>{{ place.placeType }}</td>
-                    <td>{{ place.placeName }}</td>
-                    <td>{{ place.address }}</td>
-                    <td>{{ place.phoneNumber }}</td>
-                    <td>{{ place.currentNumberOfPeople }}</td>
-                    <td>{{ place.capacity }}</td>
-                    <td>{{ place.id }}</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table> -->
         </v-data-table>
       </v-col>
     </v-row>

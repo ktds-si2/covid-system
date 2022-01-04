@@ -16,6 +16,7 @@
           :headers="headers"
           :items="placeList.data"
           :items-per-page="5"
+          @click:row = "detailClick"
           dark
         >
         </v-data-table>
@@ -31,6 +32,7 @@
 <script>
 import { getFavoriteList } from "../../service/PlaceService";
 import { deleteFavorite } from "../../service/PlaceService";
+import {mapActions, mapMutations} from 'vuex';
 
 export default {
   name: "Favorite",
@@ -56,6 +58,16 @@ export default {
     this.getPlace();
   },
   methods: {
+    ...mapActions(['getPlaceDetail']),
+    ...mapMutations(['setPlaceDetail']),
+    detailClick(row){     // Author : JHW
+      // 1. placeDetail 정보 얻은 후 placeDetail 세팅
+      // 2. router push to detail 페이지
+      // this.setPlaceDetail(this.getPlaceDetail(row.place_id));
+      this.getPlaceDetail(row.place_id);
+      this.$router.push('/placeDetail');
+    }
+    ,
     async getPlace() {
       this.placeList = await getFavoriteList(this.$store.getters.getToken);
     },
