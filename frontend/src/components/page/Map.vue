@@ -1,7 +1,7 @@
 <!-- Google Map     Author : JHW -->
 <template>
-    <div>
-        <GmapMap ref="mapRef" :center="{lat : 37.5651 , lng : 126.98955}" :zoom="13" style="width:800px; height:600px">
+    <div style="margin-left: 100px">
+        <GmapMap ref="mapRef" :center="{lat : 37.5651 , lng : 126.98955}" :zoom="13" style="width:800px; height:400px">
         <GmapMarker 
          
          :position="{lat : 37.5651 , lng : 126.98955}"

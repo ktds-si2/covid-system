@@ -21,7 +21,7 @@
   </v-container>
 </template>
 <script>
-import { createNewPlace } from "../../../Service/AdminService";
+import { createNewPlace } from "../../../service/AdminService";
 
 export default {
   name: "CreatePage",

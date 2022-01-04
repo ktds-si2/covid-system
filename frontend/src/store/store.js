@@ -2,7 +2,7 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { authenticate, signupMember } from '@/Service/MemberService';
+import { authenticate, signupMember } from '@/service/MemberService';
 import router from '../router';
 
 Vue.use(Vuex);
@@ -14,6 +14,7 @@ export const store = new Vuex.Store({
     isLogin: false, // 로그인 확인 여부
     userAuthority: 'userAuthority', // 접속한 유저 권한
     userName: 'userName', // 접속한 유저 이름
+    placeDetail: {}, // Place 상세페이지 데이터
   },
   mutations: {
     setToken(state, loginResponse) {
@@ -32,6 +33,11 @@ export const store = new Vuex.Store({
       state.userAuthority = '';
       state.userName = '';
       state.isLogin = false;
+    },
+    setPlaceDetail(state, placeDto) {
+      // place 상세정보 Setting   Author : JHW
+
+      state.placeDetail = placeDto;
     },
   },
   actions: {
