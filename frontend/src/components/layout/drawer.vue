@@ -22,6 +22,16 @@
           <v-list-item-title class="secondlist"> Home </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <v-list-item @click="movePlaceList()" link>
+        <v-list-item-icon>
+          <v-icon> mdi-map </v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="secondlist"> PlaceList </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
       <v-list-item @click="moveFavorite()" link>
         <v-list-item-icon>
           <v-icon> mdi-star-outline </v-icon>
@@ -66,6 +76,9 @@ export default {
     
   }),
   methods: {  // 라우터 이동 함수   Author : JHW
+    movePlaceList() {
+      this.$router.push('/PlaceList');
+    },
     moveHome() {
       this.$router.push('/');
     },

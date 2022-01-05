@@ -4,6 +4,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { authenticate, signupMember } from '@/service/MemberService';
 import { getPlaceDetail } from '@/service/PlaceService';
+import { getCoronaCntOfEachCity } from '@/service/CoronaService';
+
 import router from '../router';
 
 Vue.use(Vuex);
@@ -16,6 +18,7 @@ export const store = new Vuex.Store({
     userAuthority: 'userAuthority', // 접속한 유저 권한
     userName: 'userName', // 접속한 유저 이름
     placeDetail: {}, // Place 상세페이지 데이터
+    CoronaCntOfEachCity: {}, // 각 도시별 코로나 수
   },
   mutations: {
     setToken(state, loginResponse) {
@@ -39,6 +42,12 @@ export const store = new Vuex.Store({
       // place 상세정보 Setting   Author : JHW
 
       state.placeDetail = placeDto;
+    },
+
+    setCoronaCntOfEachCity(state, CoronaCntOfEachCity) {
+      // 지역별 코로나 확진자 수 Setting    Author : JHW
+      state.CoronaCntOfEachCity = CoronaCntOfEachCity;
+      console.log(state.CoronaCntOfEachCity);
     },
   },
   actions: {
@@ -70,6 +79,25 @@ export const store = new Vuex.Store({
       let placeResponse = await getPlaceDetail(placeId);
 
       commit('setPlaceDetail', placeResponse.data);
+    },
+
+    async setCoronaCntOfEachCity({ commit }) {
+      // 도시별 코로나 현황 요청    Author : JHW
+      getCoronaCntOfEachCity().then((result) => {
+        let tmp = result.data;
+
+        let CoronaCntOfEachCity = {
+          busan: tmp.busan,
+          daegu: tmp.daegu,
+          gwangju: tmp.gwangju,
+          gyeonggi: tmp.gyeonggi,
+          seoul: tmp.seoul,
+          daejeon: tmp.daejeon,
+          korea: tmp.korea,
+        };
+
+        commit('setCoronaCntOfEachCity', CoronaCntOfEachCity);
+      });
     },
   },
   getters: {

@@ -44,7 +44,7 @@
 import { getPlaceList } from "../../service/PlaceService";
 import { searchPlace } from "../../service/PlaceService";
 import { createFavorite } from "../../service/PlaceService";
-import {mapMutations} from 'vuex';
+import {mapMutations, mapActions} from 'vuex';
 
 export default {
   name: "Main",
@@ -71,6 +71,7 @@ export default {
     SearchText: "",
   }),
   methods: {
+    ...mapActions(['setCoronaCntOfEachCity']),
     ...mapMutations(['setPlaceDetail']),
     detailClick(row) {  // 상세보기 클릭 이벤트   Author : JHW
       this.setPlaceDetail(this.placeList.data[row.id- 1]);
@@ -142,6 +143,8 @@ export default {
   },
   created() {
     this.getPlace();
+    this.setCoronaCntOfEachCity();
+    
   },
   mounted() {},
 };

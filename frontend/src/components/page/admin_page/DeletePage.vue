@@ -71,6 +71,7 @@ export default {
       this.selected = [];
       this.getPlace()
       alert("장소 삭제 완료")
+      this.$router.push('/')
    },
   }
 }
