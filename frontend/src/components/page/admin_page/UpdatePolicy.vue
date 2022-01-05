@@ -50,6 +50,7 @@ export default {
           this.selectedPlaceType = ''
           this.limitTime = ''
           alert("정책이 변경되었습니다")
+          this.$router.push('/');
       }
       
   },

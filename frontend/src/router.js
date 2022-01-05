@@ -9,7 +9,12 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'Main',
-      component: () => import('./components/page/Main.vue'),
+      component: () => import('./components/page/chart/CoronaChart.vue'),
+    },
+    {
+      path: '/placelist',
+      name: 'PlaceList',
+      component: () => import('./components/page/PlaceList.vue'),
     },
     {
       path: '/login',

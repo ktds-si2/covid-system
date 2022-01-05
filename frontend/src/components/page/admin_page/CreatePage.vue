@@ -89,7 +89,7 @@ export default {
           this.currentNumberOfPeople = ''
           this.capacity = ''
           this.limitTime = ''
-          this.$router.go(-1)
+          this.$router.push('/')
       }
       else {
           alert("장소등록 실패!")
